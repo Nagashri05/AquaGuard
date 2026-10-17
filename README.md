@@ -4,11 +4,19 @@
 
 > **Intelligent, real-time water monitoring, acoustic-volumetric anomaly detection, and leak diagnostics for colleges, hostels, apartments, and enterprises.**
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?logo=render&logoColor=white)](https://aquaguard-jobw.onrender.com)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-AquaGuard-blue?logo=github)](https://github.com/Nagashri05/AquaGuard)
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
 [![React](https://img.shields.io/badge/Frontend-React%2019-61DAFB?logo=react)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38B2AC?logo=tailwindcss)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+### 🌐 Live Deployment
+- 🖥️ **Live Web App & Dashboard**: [https://aquaguard-jobw.onrender.com](https://aquaguard-jobw.onrender.com)
+- 📖 **Interactive Swagger API Docs**: [https://aquaguard-jobw.onrender.com/docs](https://aquaguard-jobw.onrender.com/docs)
+- 📡 **Physical IoT Telemetry Ingestion**: `POST https://aquaguard-jobw.onrender.com/api/telemetry`
 
 ---
 
