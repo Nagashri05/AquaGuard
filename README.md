@@ -10,9 +10,8 @@
 
 ---
 
-> 💡 **EVALUATOR & JUDGE NOTE**:  
-> **No physical hardware is required to run or evaluate AquaGuard!**  
-> AquaGuard features a **hardware-ready architecture** with a complete built-in **Digital Twin Simulator** and an **Automated 1-Click Live Demo Tour**. For teams with physical hardware, ready-to-flash ESP32 C++ firmware and circuit schematics are provided in the [`firmware/`](./firmware) directory.
+> 💡 **Hardware & Simulation Support**:  
+> AquaGuard features a **hardware-ready architecture** with both real physical ESP32 streaming and a complete built-in **Digital Twin Simulator**. The platform can be evaluated end-to-end with or without physical sensors attached. Ready-to-flash ESP32 C++ firmware and circuit schematics are provided in the [`firmware/`](./firmware) directory.
 
 ---
 
@@ -110,9 +109,9 @@ This automatically starts:
 
 ---
 
-## 🎭 Hackathon Presentation Walkthrough (Judges Demo Script)
+## 🎮 Interactive Simulation & Scenario Walkthrough
 
-Open your browser to [http://localhost:5173](http://localhost:5173) and use the **Judge Demo Studio** at the top:
+Open your browser to [http://localhost:5173](http://localhost:5173) and use the **Demo Control Studio** at the top:
 
 ### 🌟 Option A: Automated 1-Click Tour (Recommended)
 Click the green **`▶ Start Automated Live Tour`** button. The dashboard will automatically cycle through all 4 real-world plumbing scenarios every 7 seconds, with an animated on-screen AI explanation banner explaining what is happening.
