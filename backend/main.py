@@ -9,6 +9,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
+import sys
+
+# Ensure backend directory is in sys.path for direct or package execution
+_backend_dir = os.path.dirname(os.path.abspath(__file__))
+if _backend_dir not in sys.path:
+    sys.path.insert(0, _backend_dir)
+
 from database import init_db, get_connection
 from ai_engine import ai_engine
 from simulator import simulator

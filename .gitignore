@@ -2,9 +2,9 @@
 node_modules/
 frontend/node_modules/
 
-# Production build
-frontend/dist/
-dist/
+# Production build (committed for zero-config cloud deployment)
+# frontend/dist/
+# dist/
 
 # Python cache & virtual environments
 __pycache__/
