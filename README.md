@@ -1,8 +1,18 @@
 # AquaGuard: AI-Powered Water Intelligence
 
-> **Intelligent, real-time water monitoring and acoustic-volumetric anomaly detection for colleges, hostels, apartments, and enterprises.**
+> **Intelligent, real-time water monitoring, acoustic-volumetric anomaly detection, and leak diagnostics for colleges, hostels, apartments, and enterprises.**
 
-AquaGuard transforms ordinary water infrastructure into an intelligent, sustainable network. By pairing low-cost IoT turbine flow sensors (ESP32 + YF-S201) with a multi-factor AI diagnostic engine, AquaGuard catches invisible leaks, calculates real-time excess consumption, and prioritizes physical maintenance before millions of liters are wasted.
+[![GitHub Repo](https://img.shields.io/badge/GitHub-AquaGuard-blue?logo=github)](https://github.com/Nagashri05/AquaGuard)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/Frontend-React%2019-61DAFB?logo=react)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38B2AC?logo=tailwindcss)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+> 💡 **EVALUATOR & JUDGE NOTE**:  
+> **No physical hardware is required to run or evaluate AquaGuard!**  
+> AquaGuard features a **hardware-ready architecture** with a complete built-in **Digital Twin Simulator** and an **Automated 1-Click Live Demo Tour**. For teams with physical hardware, ready-to-flash ESP32 C++ firmware and circuit schematics are provided in the [`firmware/`](./firmware) directory.
 
 ---
 
@@ -28,6 +38,7 @@ AquaGuard transforms ordinary water infrastructure into an intelligent, sustaina
 5. **Physical IoT + Hardware-Free Demo Mode**
    - Direct REST API endpoint (`POST /api/telemetry`) accepting real ESP32 microcontroller packets.
    - 4-step interactive judge demo suite: **Normal Flow (0.3 L/min)** &rarr; **Small Leak (2.4 L/min)** &rarr; **Major Leak (14.8 L/min)** &rarr; **Noisy/Uncertain Data**.
+   - Includes **Automated 1-Click Guided Demo Tour** with on-screen AI narration.
 
 6. **UN Sustainable Development Goals (SDG) Alignment**
    - Directly contributes to **SDG 6** (Clean Water & Sanitation), **SDG 11** (Sustainable Cities & Communities), and **SDG 12** (Responsible Consumption & Production) with live savings counters.
@@ -39,25 +50,25 @@ AquaGuard transforms ordinary water infrastructure into an intelligent, sustaina
 ```mermaid
 flowchart TD
     subgraph IoT["IoT Hardware Layer"]
-        SENSOR["YF-S201 Flow Sensor<br/>(Hall Effect Turbine)"] -->|Pulse Interrupts| ESP["ESP32 DevKit V1<br/>(Wi-Fi Microcontroller)"]
-        ESP -->|HTTP POST JSON| API["FastAPI REST Endpoint<br/>/api/telemetry"]
+        SENSOR["YF-S201 Flow Sensor (Hall Effect Turbine)"] -->|Pulse Interrupts| ESP["ESP32 DevKit V1 (Wi-Fi Microcontroller)"]
+        ESP -->|HTTP POST JSON| API["FastAPI REST Ingestion (/api/telemetry)"]
     end
 
-    subgraph Backend["AI & Backend Layer (Python FastAPI)"]
-        API --> ENGINE["AquaGuard AI Engine"]
-        SIM["Scenario Simulator<br/>(Demo / Testbench)"] --> ENGINE
-        ENGINE --> DB[("SQLite Database<br/>aquaguard.db")]
-        ENGINE --> EXP["Explainable Inference<br/>&amp; Wastage Estimator"]
-        EXP --> SAFETY["Safety by Design<br/>Guardrails &amp; Locks"]
-        SAFETY --> WS["WebSocket &amp; REST Server<br/>(:8000)"]
+    subgraph Backend["AI and Backend Layer (Python FastAPI)"]
+        API --> ENGINE["AquaGuard AI Diagnostic Engine"]
+        SIM["Telemetry Simulator (Digital Twin)"] --> ENGINE
+        ENGINE --> DB["SQLite Database (aquaguard.db)"]
+        ENGINE --> EXP["Explainable Inference and Wastage Estimator"]
+        EXP --> SAFETY["Safety by Design Guardrails and Interlocks"]
+        SAFETY --> WS["WebSocket and REST Server (:8000)"]
     end
 
     subgraph Frontend["Executive Dashboard (React + Vite + Tailwind)"]
-        WS --> UI["AquaGuard Web Application<br/>(:5173)"]
-        UI --> TAB1["Live Intelligence &amp; Charts"]
-        UI --> TAB2["AI Diagnostics &amp; Explanations"]
-        UI --> TAB3["Priority Queue"]
-        UI --> TAB4["Safety &amp; Reliability Center"]
+        WS --> UI["AquaGuard Web Application (:5173)"]
+        UI --> TAB1["Live Intelligence and Charts"]
+        UI --> TAB2["AI Diagnostics and Explanations"]
+        UI --> TAB3["Priority Problem Queue"]
+        UI --> TAB4["Safety and Reliability Center"]
         UI --> TAB5["SDG Impact Analysis"]
         UI --> TAB6["ESP32 Hardware Lab"]
     end
@@ -65,57 +76,75 @@ flowchart TD
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 Quick Start Guide (Clone & Run in 2 Minutes)
 
 ### Prerequisites
-- **Python 3.10+** (with `fastapi`, `uvicorn`, `scikit-learn` installed)
+- **Python 3.10+**
 - **Node.js v18+** & `npm`
 
-### 1. Launch Everything in One Command
-From the project root:
+### Step 1: Clone Repository
+```bash
+git clone https://github.com/Nagashri05/AquaGuard.git
+cd AquaGuard
+```
+
+### Step 2: Install Dependencies
+```bash
+# Install Python backend dependencies
+pip install -r requirements.txt
+
+# Install React frontend dependencies
+cd frontend
+npm install
+cd ..
+```
+
+### Step 3: Launch AquaGuard
 ```bash
 python run_aquaguard.py
 ```
 This automatically starts:
-- **FastAPI Backend Server**: `http://127.0.0.1:8000`
-- **Vite React Frontend**: `http://localhost:5173`
+- **FastAPI Backend Server**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- **API Swagger Documentation**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **Vite React Frontend**: [http://localhost:5173](http://localhost:5173)
 
 ---
 
 ## 🎭 Hackathon Presentation Walkthrough (Judges Demo Script)
 
-Open your browser to `http://localhost:5173` and use the **Judge Demo Control Studio** bar at the top:
+Open your browser to [http://localhost:5173](http://localhost:5173) and use the **Judge Demo Studio** at the top:
 
-1. **Step 1: Normal Operation (Baseline)**
+### 🌟 Option A: Automated 1-Click Tour (Recommended)
+Click the green **`▶ Start Automated Live Tour`** button. The dashboard will automatically cycle through all 4 real-world plumbing scenarios every 7 seconds, with an animated on-screen AI explanation banner explaining what is happening.
+
+### 🕹️ Option B: Manual Interactive Walkthrough
+1. **Step 1: Normal Baseline Flow**
    - Click **`1. Normal Flow`** (Flow: `0.30 L/min`).
    - *Result*: Status shows `NORMAL`. The AI indicates usage matches the diurnal baseline. Active alerts count is `0`.
-
-2. **Step 2: Small Continuous Leak**
+2. **Step 2: The Silent Leak**
    - Click **`2. Small Leak`** (Flow: `2.40 L/min`).
    - *Result*: Status updates to **`POSSIBLE LEAK DETECTED`**, Risk: `Medium`, Confidence: `87%`.
-   - Point out: The AI explains that water flow remained sustained for over 18 minutes during expected low usage. Shows estimated daily wastage (~3,000 L/day).
-
+   - *Wastage*: Highlights **~2,952 Liters/day** lost if left unchecked.
+   - *Explanation*: Click **AI Diagnostics** to see observational evidence of 18 minutes unbroken continuous flow during off-hours.
 3. **Step 3: Major Rupture Anomaly**
    - Click **`3. Major Leak`** (Flow: `14.80 L/min`).
    - *Result*: Status escalates to **`HIGH-RISK ANOMALY DETECTED`**, Risk: `High`, Confidence: `96%`.
-   - Point out: Estimated water at risk exceeds 20,000 L/day. Priority queue ranks this as `HIGH PRIORITY` at Hostel Block B.
-
-4. **Step 4: Noisy / Uncertain Sensor Data**
+   - *Priority Queue*: Automatically escalates Hostel Block B to `HIGH PRIORITY` with over **20,000 L/day** at risk.
+4. **Step 4: Noisy / Uncertain Data (Defensive AI)**
    - Click **`4. Noisy Data`** (Erratic flow oscillation).
-   - *Result*: Status shows **`INSUFFICIENT EVIDENCE`** with message:
+   - *Result*: Status shows **`INSUFFICIENT EVIDENCE`** (Confidence: `38%`):
      > *"Please collect better sensor data before taking action."*
-   - Point out: **Defensive Safety AI** prevents false alarms when sensors have wiring flutter or pipeline air pockets.
-
+   - *Safety Guardrail*: Prevents false alarms when sensors experience hydraulic turbulence or wiring flutter.
 5. **Step 5: Physical Hardware Test**
    - Open the **`ESP32 IoT Lab`** tab.
-   - Click **`Dispatch HTTP POST to Backend`** or run the provided `curl` command.
-   - Show how external IoT microcontrollers stream directly into the live intelligence engine.
+   - Enter `3.5 L/min` and click **`Dispatch HTTP POST to Backend`**.
+   - Demonstrates that external microcontrollers stream directly into the live intelligence engine.
 
 ---
 
 ## 🌍 UN Sustainable Development Goals (SDG) Alignment
 
-- **SDG 6 (Clean Water and Sanitation)**: Early detection prevents silent subterranean and cistern wastage, conserving over 30,000 liters monthly per monitored building.
+- **SDG 6 (Clean Water and Sanitation)**: Early detection prevents silent subterranean and cistern wastage, conserving over **30,000 liters monthly** per monitored building.
 - **SDG 11 (Sustainable Cities and Communities)**: Protects campus buildings and apartment risers from structural water degradation, mold, and ceiling collapses.
 - **SDG 12 (Responsible Consumption and Production)**: Eliminates municipal booster pumping energy (~0.45 kWh/m³) and avoids carbon emissions associated with water distribution.
 
