@@ -1,9 +1,12 @@
 import asyncio
 import json
+import os
 from datetime import datetime, timedelta
 from typing import Dict, Any, List, Optional
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 from database import init_db, get_connection
@@ -411,3 +414,22 @@ async def websocket_telemetry(websocket: WebSocket):
     except Exception:
         if queue in simulator.subscribers:
             simulator.subscribers.remove(queue)
+
+# 11. Serve React Frontend SPA if dist directory exists (Full-Stack 1-Click Cloud Hosting)
+dist_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist"))
+if os.path.exists(dist_dir):
+    assets_dir = os.path.join(dist_dir, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_spa_frontend(full_path: str):
+        if full_path.startswith("api/") or full_path.startswith("ws"):
+            raise HTTPException(status_code=404, detail="API route not found")
+        candidate = os.path.join(dist_dir, full_path)
+        if os.path.isfile(candidate):
+            return FileResponse(candidate)
+        index_file = os.path.join(dist_dir, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        return {"status": "Frontend build not found"}
