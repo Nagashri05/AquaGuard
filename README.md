@@ -1,5 +1,7 @@
 # AquaGuard: AI-Powered Water Intelligence
 
+![AquaGuard Thumbnail](./thumbnail.jpg)
+
 > **Intelligent, real-time water monitoring, acoustic-volumetric anomaly detection, and leak diagnostics for colleges, hostels, apartments, and enterprises.**
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-AquaGuard-blue?logo=github)](https://github.com/Nagashri05/AquaGuard)
